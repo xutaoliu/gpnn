@@ -54,7 +54,7 @@ def main(args):
     start_time = time.time()
 
     args.cuda = not args.no_cuda and torch.cuda.is_available()
-    timestamp = datetime.datetime.fromtimestamp(time.time()).strftime('%Y-%m-%d %H:%M:%S')
+    timestamp = datetime.datetime.fromtimestamp(time.time()).strftime('%Y-%m-%d_%H-%M-%S')
     logger = logutil.Logger(os.path.join(args.log_root, timestamp))
 
     # Load data
@@ -194,7 +194,7 @@ def validate(val_loader, model, criterion, logger=None, args=None, test=False):
         pred_adj_mat, pred_node_labels = model(edge_features, node_features, adj_mat, node_labels, args)
 
         # Logs
-        losses.update(criterion(pred_node_labels, node_labels).data[0], edge_features.size(0))
+        losses.update(criterion(pred_node_labels, node_labels).data.item(), edge_features.size(0))
         error_rate, total_nodes, predictions, ground_truth = evaluation(pred_node_labels, node_labels)
         error_ratio.update(error_rate, total_nodes)
         error_rate, total_nodes, predictions, ground_truth = evaluation(pred_node_labels[:, [0], :], node_labels[:, [0], :])

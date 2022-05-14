@@ -68,7 +68,7 @@ def main(args):
     start_time = time.time()
 
     args.cuda = not args.no_cuda and torch.cuda.is_available()
-    timestamp = datetime.datetime.fromtimestamp(time.time()).strftime('%Y-%m-%d %H:%M:%S')
+    timestamp = datetime.datetime.fromtimestamp(time.time()).strftime('%Y-%m-%d_%H-%M-%S')
     logger = logutil.Logger(os.path.join(args.log_root, timestamp))
 
     # Load data

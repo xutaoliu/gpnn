@@ -15,8 +15,8 @@ import argparse
 import numpy as np
 import torch.utils.data
 
-import cad120_config
-import metadata
+from . import cad120_config
+from . import metadata
 
 
 class CAD120(torch.utils.data.Dataset):
@@ -24,7 +24,7 @@ class CAD120(torch.utils.data.Dataset):
 
     def __init__(self, feature_data_path, sequence_ids):
         if not self.__class__.features:
-            self.__class__.features = pickle.load(open(feature_data_path, 'rb'))
+            self.__class__.features = pickle.load(open(feature_data_path, 'rb'), encoding='iso-8859-1')
         self.data = list()
         self.sequence_ids = list()
         for sequence_id, sequence_features in self.__class__.features.items():

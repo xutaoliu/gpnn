@@ -25,7 +25,7 @@ class ConvLSTMCell(nn.Module):
         self.input_size = input_size
         self.hidden_size = hidden_size
         self.kernel_size = kernel_size
-        self.padding = (self.kernel_size - 1) / 2
+        self.padding = int((self.kernel_size - 1) / 2)
         self.Gates = nn.Conv2d(input_size + hidden_size, 4 * hidden_size, self.kernel_size, padding=self.padding)
 
     def forward(self, input_, prev_state, use_cuda=True):

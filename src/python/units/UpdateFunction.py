@@ -59,7 +59,7 @@ class UpdateFunction(torch.nn.Module):
         message_size = self.args['message_size']
         num_layers = self.args.get('update_hidden_layers', 1)
         bias = self.args.get('update_bias', False)
-        dropout = self.args.get('update_dropout', False)
+        dropout = self.args.get('update_dropout', 0)
         self.learn_modules.append(torch.nn.GRU(message_size, node_feature_size, num_layers=num_layers, bias=bias, dropout=dropout))
 
 

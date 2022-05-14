@@ -175,7 +175,7 @@ def load_best_checkpoint(args, model, optimizer):
             os.makedirs(checkpoint_dir)
         if os.path.isfile(best_model_file):
             print("=> loading best model '{}'".format(best_model_file))
-            checkpoint = torch.load(best_model_file)
+            checkpoint = torch.load(best_model_file, encoding='iso-8859-1')
             args.start_epoch = checkpoint['epoch']
             best_epoch_error = checkpoint['best_epoch_error']
             try:
